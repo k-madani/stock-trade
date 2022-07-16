@@ -1,5 +1,6 @@
 # Stock-Trade
 Overview - 
+
     1. This Project contains API calls to 
         - create a trade 
         - get all the trades of the user 
@@ -8,6 +9,7 @@ Overview -
     3. The user can be register & login
 
 Technologies used - 
+
     1. NodeJs 
     2. ExpressJs
     3. MongoDB
