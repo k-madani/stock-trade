@@ -1,0 +1,28 @@
+{
+  "name": "stock-trade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "service.js",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "decache": "^4.6.1",
+    "mocha": "^10.0.0"
+  },
+  "scripts": {
+    "test": "mocha --timeout 10000"
+  },
+  "author": "Krishna Madani",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "jsonschema": "^1.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.8.0",
+    "mongoose": "^6.4.4",
+    "nodemon": "^2.0.19"
+  }
+}
