@@ -138,6 +138,8 @@ router.get(`/trades`, auth, async (req, res) => {
             query = { user_id: user_id }
         } else if (!user_id && type) {
             query = { type: type }
+        } else {
+            query = { user_id: userIdFromHeaders }
         }
 
         Trade.find(query)
