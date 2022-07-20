@@ -162,7 +162,7 @@ router.get(`/trades/:_id`, auth, async (req, res) => {
 
     Trade.find({ _id: req.params._id, user_id: userId })
         .then((trades) => {
-            if (trades) {
+            if (trades.length !== 0) {
                 res.json(trades)
             } else {
                 res.status(404).json({ Error: 'There is no trade yet with this trade id' })
