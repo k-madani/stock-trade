@@ -21,8 +21,8 @@ const tradeSchema = {
         },
         'shares': {
             'type': 'number',
-            'minLength': 1,
-            'maxLength': 100
+            'minimum': 1,
+            'maximum': 100
         },
         'price': {
             'type': 'number',

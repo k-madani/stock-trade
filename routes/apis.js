@@ -87,11 +87,12 @@ router.post('/login', async (req, res) => {
 //create a trade 
 router.post('/trades', auth, async (req, res) => {
     let tradeId;
+    req.body.type = req.body.type.toLowerCase();
     const validatedResult = validateTrade(req.body);
 
-    if(Object.keys(validatedResult).length === 0){
+    if (Object.keys(validatedResult).length === 0) {
         const userId = await getUserId(req.headers.authorization);
-    
+
         if (userId !== req.body.user_id) {
             res.status(400).json({ Error: 'user Id does not match' });
         } else {
@@ -102,11 +103,11 @@ router.post('/trades', auth, async (req, res) => {
             } catch (err) {
                 throw err;
             }
-    
+
             const record = { '_id': tradeId, 'timestamp': Math.floor(new Date().getTime()), ...req['body'] }
-            record.type = record.type.toLowerCase();
-    
-    
+
+
+
             Trade.create(record)
                 .then((response) => {
                     res.status(201).json(response)
@@ -133,7 +134,7 @@ router.get(`/trades`, auth, async (req, res) => {
         res.status(400).json({ Error: 'user Id does not match' });
     } else {
         if (type && user_id) {
-            query = { type: type, user_id: user_id};
+            query = { type: type, user_id: user_id };
         } else if (user_id && !type) {
             query = { user_id: user_id }
         } else if (!user_id && type) {
@@ -143,7 +144,7 @@ router.get(`/trades`, auth, async (req, res) => {
         }
 
         Trade.find(query)
-            .sort({ _id: 1 })            
+            .sort({ _id: 1 })
             .then((trades) => {
                 res.json(trades)
             })
@@ -161,7 +162,7 @@ router.get(`/trades/:_id`, auth, async (req, res) => {
 
     Trade.find({ _id: req.params._id, user_id: userId })
         .then((trades) => {
-            if (trades) {
+            if (trades.length !== 0) {
                 res.json(trades)
             } else {
                 res.status(404).json({ Error: 'There is no trade yet with this trade id' })
